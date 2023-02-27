@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Test 4</title>
+</head>
+
+<body>
+    <h1>Test 4</h1>
+</body>
+<script>
+    const estadoFatura = {
+        "SP": 67836.43,
+        "RJ": 36678.66,
+        "MG": 29229.88,
+        "ES": 27165.48,
+        "Outros": 19849.53
+    };
+
+    const totalFatura = Object.values(estadoFatura).reduce((total, valor) => total + valor);
+
+    const estadoPorcento = {};
+    for (const [estado, faturamento] of Object.entries(estadoFatura)) {
+        const percen = (faturamento / totalFatura) * 100;
+        estadoPorcento[estado] = percen;
+    }
+
+    console.log(estadoPorcento);
+    for (const [estado, percentual] of Object.entries(estadoPorcento)) {
+        console.log(`${estado}: ${percentual.toFixed(2)}%`);
+    }
+</script>
+
+</html>

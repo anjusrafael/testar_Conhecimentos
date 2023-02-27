@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Test 3</title>
+</head>
+
+<body>
+    <h1>Test 3</h1>
+</body>
+<script>
+    function faturamentoCalc(vetor) {
+        let total = 0;
+        let media = 0;
+        let quantAcimaMedia = 0;
+        let menorValor = vetor[0].valor;
+        let maiorValor = vetor[0].valor;
+
+        for (let i = 0; i < vetor.length; i++) {
+            total += vetor[i].valor;
+
+            if (vetor[i].valor != 0) {
+                if (vetor[i].valor < menorValor) {
+                    menorValor = vetor[i].valor;
+                }
+                if (vetor[i].valor > maiorValor) {
+                    maiorValor = vetor[i].valor;
+                }
+            }
+        }
+
+        media = total / vetor.length;
+
+        for (let i = 0; i < vetor.length; i++) {
+            if (vetor[i].valor > media) {
+                quantAcimaMedia++;
+            }
+        }
+
+        return {
+            menorValor: menorValor,
+            maiorValor: maiorValor,
+            quantAcimaMedia: quantAcimaMedia
+        };
+    }
+
+    fetch("dados.json")
+        .then(response => response.json())
+        .then(data => {
+            const faturamentoMensal = data;
+            const resultado = faturamentoCalc(faturamentoMensal);
+            console.log("Menor valor: " + resultado.menorValor);
+            console.log("Maior valor: " + resultado.maiorValor);
+            console.log("Dias acima da média: " + resultado.quantAcimaMedia);
+        })
+        .catch(error => {
+            console.error("Erro ao obter dados do arquivo JSON:", error);
+        });
+</script>
+
+</html>

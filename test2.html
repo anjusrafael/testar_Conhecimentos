@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Test 2</title>
+</head>
+
+<body>
+    <input type="number" id="num" name="num" placeholder="Coloque aqui um número">
+    <button type="button" id="btn">Click Here</button>
+</body>
+
+</html>
+<script>
+    function fibo(num) {
+        if (num == 0) {
+            return 0;
+        } else if (num == 1 || num == 2) {
+            return 1;
+        } else {
+            return fibo(num - 1) + fibo(num - 2);
+        }
+    }
+
+    function isFibo(num) {
+        let i = 0;
+        while (fibo(i) < num) {
+            i++;
+        }
+        if (fibo(i) == num) {
+            console.log("Esse número " + num + " faz parte da sequência de Fibonacci.");
+        } else {
+            console.log("Esse número " + num + " não faz parte da sequência de Fibonacci.");
+        }
+    }
+
+    let button = document.getElementById("btn");
+    button.addEventListener('click', event => {
+        let num = document.getElementById('num').value;
+        isFibo(num);
+    });
+</script>
